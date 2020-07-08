@@ -1,0 +1,10 @@
+// Given 2 ints, a and b, return their sum. However, sums in the range
+// 10..19 inclusive, are forbidden, so in that case just return 20.
+public int sortaSum(int a, int b) 
+{
+  int result = a + b;
+  if (10 <= result && result <= 19 )
+    result = 20;
+  
+  return result;
+}
