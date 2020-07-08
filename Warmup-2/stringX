@@ -1,0 +1,20 @@
+// Given a string, return a version where all the "x" have been removed. 
+// Except an "x" at the very start or end should not be removed.
+public String stringX(String str) 
+{
+  int len = str.length() - 1;
+  String result;
+  if (len <= 0)  // no string or one character
+    result = str;
+  else 
+  {
+    result = str.substring(0,1);
+    for (int i = 1; i < len; i++)
+    {
+      if (str.charAt(i) != 'x')
+        result += str.charAt(i);
+    }
+    result += str.charAt(len);
+  }
+  return result;
+}
