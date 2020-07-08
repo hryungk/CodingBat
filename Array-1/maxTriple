@@ -1,0 +1,17 @@
+// Given an array of ints of odd length, look at the first, last, 
+// and middle values in the array and return the largest. The array length will be a least 1.
+public int maxTriple(int[] nums) 
+{
+  assert nums.length % 2 == 1 && nums.length >= 1;
+  int largest;
+  int first = nums[0];
+  if (nums.length == 1)
+    largest = nums[0];
+  else
+  {
+    int last = nums[nums.length-1];
+    int mid = nums[nums.length/2];
+    largest = Math.max(first, Math.max(last, mid));
+  }
+  return largest;
+}
