@@ -1,0 +1,31 @@
+// Given a string, look for a mirror image (backwards) string at both 
+// the beginning and end of the given string. In other words, zero or 
+// more characters at the very begining of the given string, and at the 
+// very end of the string in reverse order (possibly overlapping). For 
+// example, the string "abXYZba" has the mirror end "ab"
+public String mirrorEnds(String string) 
+{
+  String result = "";
+  int len = string.length();
+  int endIdx; // The max index to search upon
+  if (len % 2 == 0) // even length
+    endIdx= (len-1)/2;
+  else              // odd length
+    endIdx = (len-1)/2-1;
+    
+  if (len < 2)
+    result = string;
+  else
+  {
+    int i = 0;
+    boolean found = true;
+    while (found && i < len)
+    {
+      found = string.charAt(i) == string.charAt(len-1-i);
+      if (found)
+        i++;
+    } // end while
+    result = string.substring(0, i);
+  }
+  return result;
+}
