@@ -1,0 +1,14 @@
+// Given an array of ints, return true if the array contains a 2 next to a 2 somewhere.
+public boolean has22(int[] nums)
+{
+  boolean found = false;
+  
+  int i = 0;
+  while (i < nums.length-1 && !found)
+  {
+    found = found || (nums[i] == 2 && nums[i+1] == 2);
+    i++;
+  } // end while
+  
+  return found;
+}
