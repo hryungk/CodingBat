@@ -1,0 +1,18 @@
+// Given a string, if the first or last chars are 'x', return the 
+// string without those 'x' chars, and otherwise return the string unchanged.
+public String withoutX(String str) 
+{
+  String result = "";
+  int strLen = str.length();
+  if (strLen == 1 && str.charAt(0) != 'x')
+      result = str;
+  else if (strLen > 1)
+  {
+    result = str.substring(1,strLen-1);
+    if (str.charAt(0) != 'x')
+      result = str.substring(0,1) + result;
+    if (str.charAt(strLen-1) != 'x')
+      result = result + str.charAt(strLen-1);
+  }
+  return result;
+}
