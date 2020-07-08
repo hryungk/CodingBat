@@ -1,0 +1,24 @@
+// Given a string, return the length of the largest "block" in
+// the string. A block is a run of adjacent chars that are the same.
+public int maxBlock(String str) 
+{
+  int result = 0;
+  for (int i = 0; i < str.length(); i++)
+  {
+    char c = str.charAt(i);
+    boolean found = true;
+    int counter = 1;
+    int j = i+1;
+    while (found && j < str.length())
+    {
+      found = (c == str.charAt(j));
+      if (found)
+      {
+        j++;
+        counter++;
+      }
+    } // end while
+    result = Math.max(result, counter);
+  } // end for
+  return result;
+}
