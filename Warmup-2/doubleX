@@ -1,0 +1,14 @@
+// Given a string, return true if the first instance of "x" in the string is immediately followed by another "x".
+boolean doubleX(String str) 
+{
+  boolean found = false;
+  int count = 0;
+  while ((count < str.length()-1) && (str.charAt(count) != 'x'))
+  {
+    count++;
+  }
+  
+  if ((count < str.length()-1) && (str.charAt(count+1) == 'x'))
+    found = true;
+  return found;
+}
