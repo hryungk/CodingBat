@@ -1,0 +1,20 @@
+// We want make a package of goal kilos of chocolate. We have small 
+// bars (1 kilo each) and big bars (5 kilos each). Return the number 
+// of small bars to use, assuming we always use big bars before small
+// bars. Return -1 if it can't be done.
+public int makeChocolate(int small, int big, int goal) 
+{
+  // We can use no more than what we have. Use whichever number is smaller 
+  // between what we have ("big") and what we need ("goal"/5).
+  // goal/5: Number of big bars needed
+  int numOfBig = Math.min(goal/5, big); // Number of big bars we are using
+  
+  // We need to use small bars as many as  
+  // to fill up the rest after adding all the big bars.
+  int requiredSmall = goal - 5 * numOfBig;  // Number of small bars needed
+  
+  if (requiredSmall <= small)
+    return requiredSmall;
+  else
+    return -1;
+}
