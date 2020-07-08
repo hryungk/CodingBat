@@ -1,0 +1,28 @@
+// A sandwich is two pieces of bread with something in between. 
+// Return the string that is between the first and last appearance 
+// of "bread" in the given string, or return the empty string ""
+// if there are not two pieces of bread.
+public String getSandwich(String str) 
+{
+  String result = "";
+  int len = str.length();
+  int firstBreadLoc = -1;
+  int lastBreadLoc = -1;
+  
+  if (len >= 5)
+  {
+    // Find the last appearance of "bread"
+    for (int i = 0; i <= len - 5; i++)
+      if (str.substring(i, i+5).equals("bread"))
+        lastBreadLoc = i;
+    // Find the first appearance of "bread"
+    for (int i = len-5; i >= 0; i--)
+      if (str.substring(i, i+5).equals("bread"))
+        firstBreadLoc = i;
+    
+    if ((firstBreadLoc != -1 && lastBreadLoc != -1) && 
+        firstBreadLoc != lastBreadLoc)
+      result = str.substring(firstBreadLoc+5, lastBreadLoc);
+  }
+  return result;
+}
