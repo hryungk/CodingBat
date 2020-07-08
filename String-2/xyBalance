@@ -1,0 +1,37 @@
+// We'll say that a String is xy-balanced if for all the 'x' chars in the string,
+// there exists a 'y' char somewhere later in the string. So "xxy" is balanced, 
+// but "xyx" is not. One 'y' can balance multiple 'x's. Return true if the given 
+// string is xy-balanced.
+public boolean xyBalance(String str) 
+{
+  boolean result;
+  int xIdx = -1;  // stores the latest location of x, if found.
+  int yIdx = -1;  // stores the latest location of y, if found.
+  boolean xFound = false, yFound = false;
+  for (int i = 0; i < str.length(); i++)
+  {
+    if (str.charAt(i) == 'x')
+    {
+      xIdx = i;
+      xFound = true;
+    }
+    if (str.charAt(i) == 'y')
+    {
+      yIdx = i;  
+      yFound = true;
+    }
+  }
+  
+  if (xFound && yFound)
+    result = xIdx < yIdx;
+  else
+    result = !xFound;
+  //else if (!xFound && !yFound)
+  //  result = true;
+  //else if (!xFound && yFound)
+  //  result = true;
+  //else // xFound && !yFound
+  //  result = false;
+  
+ return result; 
+}
