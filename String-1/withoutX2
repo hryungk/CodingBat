@@ -1,0 +1,20 @@
+// Given a string, if one or both of the first 2 chars is 'x', 
+// return the string without those 'x' chars, and otherwise 
+// return the string unchanged. This is a little harder than it looks.
+public String withoutX2(String str) 
+{
+  String result = "";
+  int strLen = str.length();
+  if (strLen == 1 && str.charAt(0) != 'x')
+      result = str;
+  else if (strLen >= 2)
+  {
+    if (str.charAt(0) != 'x')
+      result = str.substring(0,1);
+    if (str.charAt(1) != 'x')
+      result = result + str.charAt(1);
+    if (strLen > 2)
+      result = result + str.substring(2);
+  }
+  return result;
+}
