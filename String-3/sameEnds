@@ -1,0 +1,29 @@
+// Given a string, return the longest substring that appears at both the beginning 
+// and end of the string without overlapping. For example, sameEnds("abXab") is "ab".
+public String sameEnds(String string) 
+{
+  String result = "";
+  boolean found = false;
+  int len = string.length();
+  int endIdx; // The max index to search upon
+  if (len % 2 == 0) // even length
+    endIdx= (len-1)/2;
+  else              // odd length
+    endIdx = (len-1)/2-1;
+  
+  if (len > 0)
+  { // Compare left and right halves, removing inner most element one by one
+    // until same ends are found
+    int i = 0;
+    while (i <= endIdx && !found)
+    {
+      found = string.substring(0,endIdx+1-i).
+              equals(string.substring(len-(endIdx+1)+i));
+      i++;
+    }
+    if (found)
+      result = string.substring(0,endIdx+1-(i-1));
+  }
+  
+  return result;
+}
