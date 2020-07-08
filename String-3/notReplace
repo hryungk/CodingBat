@@ -1,0 +1,44 @@
+// Given a string, return a string where every appearance of the lowercase word "is" 
+// has been replaced with "is not". The word "is" should not be immediately preceeded 
+// or followed by a letter -- so for example the "is" in "this" does not count. 
+// (Note: Character.isLetter(char) tests if a char is a letter.)
+public String notReplace(String str) 
+{
+  String result = "";
+  int len = str.length();
+  
+  int i = 0;
+  while (i < len - 1)
+  {
+    if (str.substring(i, i+2).equals("is"))
+    {
+      result = result + "is";
+      if (i == 0) // "is" is in the beginning - only need to check after s
+      {
+        if (len == 2 || !Character.isLetter(str.charAt(i+2)))
+          result = result + " not";
+      }
+      else if (i == len-2)  // "is" is at the end - only need to check before i
+      {
+        if (!Character.isLetter(str.charAt(i-1)))
+          result = result + " not";
+      }
+      else  // "is" is in the middle - check both sides of "is"
+      {
+        if (!Character.isLetter(str.charAt(i-1)) && 
+            !Character.isLetter(str.charAt(i+2)))
+          result = result + " not";
+      }
+      i = i + 1;  // Skip both i and s
+    }
+    else  // No "is" found at this location
+      result = result + str.charAt(i);
+    i++;
+  } // end while
+  
+  // The index i doesn't reach the end when the string ends without is - so we 
+  // need to include the last letter.
+  if (i == len-1) 
+    result = result + str.charAt(i);
+  return result;
+}
