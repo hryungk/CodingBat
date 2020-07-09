@@ -1,0 +1,51 @@
+// We'll say that a "mirror" section in an array is a group of contiguous elements such that somewhere 
+// in the array, the same group appears in reverse order. For example, the largest mirror section in 
+// {1, 2, 3, 8, 9, 3, 2, 1} is length 3 (the {1, 2, 3} part). Return the size of the largest mirror 
+// section found in the given array.
+public int maxMirror(int[] nums) 
+{
+  int maxLen = 0;
+  int len = nums.length;
+  
+  for (int elNum = 1; elNum <= len; elNum++) // Find mirror of i-consecutive-element sub-array
+  {
+    boolean found = false;
+    int il = 0;
+    while(!found && il <= len-elNum) // Left index loop to inspect sub-array of [il...il+elNum-1]
+    {
+      // Create Left sub-array, left-to-right
+      int[] tempL = new int[elNum]; 
+      for (int t = 0; t < elNum; t++)
+        tempL[t] = nums[il+t];
+      
+      int ir = 0;
+      while(!found && ir <= len-elNum) // Check mirror image, one by one
+      {
+        // Create Rigt sub-array, right-to-left
+        int[] tempR = new int[elNum];
+        for (int t = 0; t < elNum; t++)
+          tempR[t] = nums[len-1-t-ir];
+        
+        // Check tempL == temp R; Is mirror image found?
+        int t = 0;
+        found = true;
+        while (found && t < elNum)
+        {
+          found = (tempL[t] == tempR[t]);
+          if (found)
+            t++;
+        } // end while
+        // Update the maximum mirror sub-array length if found
+        if (found)
+          maxLen = elNum;
+        else  // If not found, increment index to inspect the next element
+          ir++;
+      } // end while
+      
+      // After inspecting all possible tempR and not found, increment to inspect next
+      if (!found)
+        il++;
+    } // end while
+  } // end for
+  return maxLen;
+}
