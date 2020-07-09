@@ -1,0 +1,26 @@
+// Given a non-empty array of ints, return a new array containing the 
+// elements from the original array that come before the first 4 in the
+// original array. The original array will contain at least one 4. Note
+// that it is valid in java to create an array of length 0.
+public int[] pre4(int[] nums)
+{
+  int len = nums.length;
+  assert len != 0;
+  boolean found4 = false;
+  
+  int i = 0;
+  while (i < len && !found4)
+  {
+    found4 = (nums[i] == 4);
+    if (!found4)
+      i++;
+  } // end while
+  if (!found4)
+    i = 0;
+  
+  int[] newArray = new int[i];
+  for (int j = 0; j < newArray.length; j++)
+    newArray[j] = nums[j];
+  
+  return newArray;
+}
