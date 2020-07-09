@@ -1,0 +1,19 @@
+// Given n>=0, create an array length n*n with the following pattern, shown here 
+// for n=3 : {0, 0, 1,    0, 2, 1,    3, 2, 1} (spaces added to show the 3 groups).
+public int[] squareUp(int n) 
+{
+  assert n >= 0;
+  int[] newArray = new int[n*n];
+  
+  for (int r = 0; r < n; r++) // (imaginary) row loop
+  {
+    int start = n - 1 - r;  // beginning index of the column
+    for (int c = start; c < n; c++) // (imaginary) column loop
+    {
+      int i = r*n + c;  // actual index in the array
+      int counter = c - start;  // ranges 0 ... r
+      newArray[i] = r + 1 - counter;
+    } // end for
+  } // end for
+  return newArray;
+}
