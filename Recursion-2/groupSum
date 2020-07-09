@@ -7,22 +7,11 @@
 // The caller can specify the whole array simply by passing start as 0. No loops are 
 // needed -- the recursive calls progress down the array.
 public boolean groupSum(int start, int[] nums, int target) 
-{
-  
+{  
   int len = nums.length;
   if (start >= len) // base case
     return target == 0;
   else
-  {
-    int sum = 0;
-    for (int i = start; i < len; i++)
-      sum += nums[i];
-    if (sum < target)
-      return false;
-    else if (sum == target)
-      return true;
-    else
-      return groupSum(start+1, nums, target - nums[start]) || 
-             groupSum(start+1, nums, target);
-  }
+    return groupSum(start+1, nums, target - nums[start]) || 
+           groupSum(start+1, nums, target);
 }
