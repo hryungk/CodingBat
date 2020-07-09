@@ -1,0 +1,34 @@
+// (This is a slightly harder version of the fix34 problem.) Return an array that contains exactly 
+// the same numbers as the given array, but rearranged so that every 4 is immediately followed by a 5.
+// Do not move the 4's, but every other number may move. The array contains the same number of 4's and 5's,
+// and every 4 has a number after it that is not a 4. In this version, 5's may appear anywhere in the original array.
+public int[] fix45(int[] nums) 
+{
+  int len = nums.length;
+  int last5Loc = -1; // Last location of 5
+  for (int i = 0; i < len-1; i++)
+  {
+    if (nums[i] == 4 && nums[i+1] != 5) // 4 is found, not followed by 5
+    { 
+      // Find the next 5 that does not follow 4
+      int j = last5Loc + 1;
+      boolean found = false;
+      while (j < len && !found)
+      {
+        found = (nums[j] == 5); // 5 is found
+        if (j > 0 && found) // Make sure this 5 does not follow 4
+          found = found && (nums[j-1] != 4);
+        if (!found) // If found, j is the location of proper 5; otherwise, increment
+          j++;
+      } // end while
+      if (j < len)  // Proper 5 is found
+      { // Swap the number right after 3 with the next 5
+        nums[j] = nums[i+1]; 
+        nums[i+1] = 5;
+        last5Loc = j;//i+1;
+      } // end if
+    } // end if
+  } // end for
+  return nums;
+  
+}
