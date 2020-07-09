@@ -1,0 +1,51 @@
+// Return an array that contains the exact same numbers as the given array, but 
+// rearranged so that all the even numbers come before all the odd numbers. Other 
+// than that, the numbers can be in any order. You may modify and return the given array, or make a new array.
+public int[] evenOdd(int[] nums) 
+{
+  int len = nums.length;
+  int mid = len/2;
+  for (int i = 0; i < len; i++)
+  {
+    int curNum = nums[i];
+    if (curNum % 2 == 1 && i <= mid) // Odd number on the left half
+    {
+      // Look for the first even number
+      boolean foundEven = false;
+      int j = i + 1;
+      while (!foundEven && j < len)
+      {
+        foundEven = (nums[j] % 2 == 0);
+        if (!foundEven)
+          j++;
+      } // end while
+      // Swap the first even number with the current odd number
+      if (foundEven)
+      {
+        nums[i] = nums[j];
+        nums[j] = curNum;
+      } // end if
+    } // end if
+    
+    if (curNum % 2 == 0 && i >= mid) // Even number on the right half
+    {
+      // Look for the first odd number
+      boolean foundOdd = false;
+      int j = i + 1;
+      while (!foundOdd && j < len)
+      {
+        foundOdd = (nums[j] % 2 == 1);
+        if (!foundOdd)
+          j++;
+      } // end while
+      // Swap the first even number with the current odd number
+      if (foundOdd)
+      {
+        nums[i] = nums[j];
+        nums[j] = curNum;
+      } // end if
+    } // end if
+  } // end for
+  
+  return nums;  // {all even numbers, all odd numbers}
+}
