@@ -1,0 +1,15 @@
+// Given a string, return recursively a "cleaned" string where adjacent chars
+// that are the same have been reduced to a single char. So "yyzzza" yields "yza".
+public String stringClean(String str) 
+{
+  if (str.length() <= 1) // base case
+    return str;
+  else
+  {
+    // Count repeatative characters
+    int i = 1;
+    while (i < str.length() && str.charAt(i) == str.charAt(0))
+      i++;
+    return str.substring(0,1) + stringClean(str.substring(i));
+  }
+}
