@@ -1,0 +1,33 @@
+// Start with two arrays of strings, a and b, each in alphabetical order, possibly with duplicates.
+// Return the count of the number of strings which appear in both arrays. The best "linear" solution
+// makes a single pass over both arrays, taking advantage of the fact that they are in alphabetical order.
+public int commonTwo(String[] a, String[] b) 
+{
+  int count = 0;
+  
+  int alen = a.length;
+  int blen = b.length;
+  int ia = 0, ib = 0;  // counter for array a and b
+  String lastStr = "";
+  
+  while (ia < alen && ib < blen)
+  {
+    int comparison = a[ia].compareTo(b[ib]);
+    if (comparison > 0) // a[ia] > b[ib]
+      ib++;
+    else if (comparison < 0) // a[ia] < b[ib]
+      ia++;
+    else // comparison == 0; a[ia] == b[ib]
+    {
+      if (!a[ia].equals(lastStr))
+      {
+        count++;
+        lastStr = a[ia];
+      }
+      ia++;
+      ib++;
+    }
+  } // end while
+  
+  return count;
+}
