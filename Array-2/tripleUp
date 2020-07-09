@@ -1,0 +1,16 @@
+// Return true if the array contains, somewhere, three increasing adjacent numbers like .... 4, 5, 6, ... or 23, 24, 25.
+public boolean tripleUp(int[] nums) 
+{
+  boolean found = false;
+  int len = nums.length;
+  if (len >= 3)
+  {
+    int i = 0;
+    while (i < len-2 && !found)
+    {
+      found = (nums[i]+1 == nums[i+1] && nums[i]+2 == nums[i+2]);
+      i++;  
+    } // end while
+  } // end if
+  return found;
+}
