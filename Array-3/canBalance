@@ -1,0 +1,27 @@
+// Given a non-empty array, return true if there is a place to split the array 
+// so that the sum of the numbers on one side is equal to the sum of the numbers on the other side.
+public boolean canBalance(int[] nums) 
+{
+  boolean result = false;
+  int len = nums.length;
+  int sum = 0;
+  for (int i = 0; i < len; i++)
+    sum += nums[i];
+  
+  // If the sum is not divisible by 2, sum of two parts can't be equal. 
+  // Therefore false automatically.
+  // So we only consider when the sum is an even number. 
+  if (sum % 2 == 0)
+  {
+    int target = sum / 2;
+    int halfSum = 0;
+    int i = 0;
+    while (halfSum < target)
+    {
+      halfSum += nums[i];
+      i++;
+    } // end while
+    result = (halfSum == target);
+  } // end if
+  return result;
+}
