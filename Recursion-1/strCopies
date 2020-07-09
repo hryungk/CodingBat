@@ -1,0 +1,14 @@
+// Given a string and a non-empty substring sub, compute recursively if at least n 
+// copies of sub appear in the string somewhere, possibly with overlapping. N will be non-negative.
+public boolean strCopies(String str, String sub, int n)
+{
+  int len = sub.length();
+  if (str.length() < len)
+    return 0 == n;
+  else
+  {
+    if (str.substring(0,len).equals(sub))
+      n--;
+    return strCopies(str.substring(1), sub, n);
+  }
+}
