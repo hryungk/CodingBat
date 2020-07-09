@@ -1,0 +1,29 @@
+// Given a non-empty array of ints, return a new array containing the elements 
+// from the original array that come after the last 4 in the original array.
+// The original array will contain at least one 4. Note that it is valid in 
+// java to create an array of length 0.
+public int[] post4(int[] nums) 
+{
+  int len = nums.length;
+  assert len != 0;
+  boolean found4 = false;
+  
+  int i = len-1;  // Search from the back of the array  
+  while (i >= 0 && !found4) 
+  {
+    found4 = (nums[i] == 4);
+    if (found4)
+      i++;  // if last 4 is found, i is the index to begin to add.
+    else
+      i--;  // if 4 is not found, decrement to inspect the next element.
+  } // end while
+  if (!found4)
+    i = len;
+  
+  int[] newArray = new int[len-i];
+  for (int j = 0; j < newArray.length; j++)
+    newArray[j] = nums[j+i];
+  
+  return newArray;
+  
+}
