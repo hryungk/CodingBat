@@ -1,0 +1,27 @@
+// Consider the leftmost and righmost appearances of some value in an array.
+// We'll say that the "span" is the number of elements between the two 
+// inclusive. A single value has a span of 1. Returns the largest span 
+// found in the given array. (Efficiency is not a priority.)
+public int maxSpan(int[] nums) 
+{
+  int len = nums.length;
+  int maxSpan = 0;
+  if (len > 0)
+  {
+    int left = nums[0];
+    int right = nums[len-1];
+    
+    // Find the right-most element that has the left value
+    int i = len - 1;
+    while (i >= 0 && nums[i] != left)
+      i--;
+    int leftSpan = i+1;
+    // Find the left-most element that has the right value
+    i = 0;
+    while (i < len && nums[i] != right)
+      i++;
+    int rightSpan = len - i;
+    maxSpan = Math.max(leftSpan, rightSpan);
+  }
+  return maxSpan;
+}
