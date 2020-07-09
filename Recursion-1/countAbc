@@ -1,7 +1,7 @@
 // Count recursively the total number of "abc" and "aba" substrings that appear in the given string.
 public int countAbc(String str) 
 {
-  if (str.length() <= 2)
+  if (str.length() <= 2) // base case
     return 0;
   else
   {
