@@ -1,0 +1,17 @@
+// Given an array of ints, return true if the array contains two 7's next 
+// to each other, or there are two 7's separated by one element, such as with {7, 1, 7}.
+public boolean has77(int[] nums) 
+{
+  boolean found = false;
+  
+  int i = 0;
+  while(i < nums.length-2 && !found)
+  {
+    found = (nums[i] == 7 && nums[i+1] == 7) || 
+              (nums[i] == 7 && nums[i+2] == 7);
+    i++;
+  } // end while
+  if (nums.length > 1 && !found)
+    found = (nums[i] == 7 && nums[i+1] == 7);
+  return found;
+}
