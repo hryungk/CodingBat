@@ -1,0 +1,26 @@
+// Given an array of scores sorted in increasing order, return true if the array 
+// contains 3 adjacent scores that differ from each other by at most 2, such as 
+// with {3, 4, 5} or {3, 5, 5}.
+public boolean scoresClump(int[] scores) 
+{
+  int len = scores.length;
+  boolean found = false;
+  
+  if (len >= 3)
+  {
+    int i = 0;
+    while (i < len-2 && !found)
+    {
+      int curInt = scores[i];
+      int nextInt = scores[i+1];
+      int nnextInt = scores[i+2];
+      
+      found = Math.abs(curInt-nextInt) <= 2 && 
+              Math.abs(curInt-nnextInt) <= 2 &&
+              Math.abs(nextInt-nnextInt) <= 2;
+      if (!found)
+        i++;
+    } // end while
+  }
+  return found;
+}
