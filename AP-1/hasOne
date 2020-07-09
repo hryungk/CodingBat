@@ -1,0 +1,15 @@
+// Given a positive int n, return true if it contains a 1 digit. 
+// Note: use % to get the rightmost digit, and / to discard the rightmost digit.
+public boolean hasOne(int n) 
+{
+  boolean found = false;
+  while (!found && n > 0)
+  {
+    int curDigit = n % 10;
+    found = curDigit == 1;
+    if (!found)
+      n = n / 10;
+  }
+  return found;
+}
+
