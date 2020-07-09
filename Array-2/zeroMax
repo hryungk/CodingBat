@@ -1,0 +1,27 @@
+// Return a version of the given array where each zero value in the array is replaced 
+// by the largest odd value to the right of the zero in the array. If there is no odd
+// value to the right of the zero, leave the zero as a zero.
+public int[] zeroMax(int[] nums) 
+{
+  int len = nums.length;
+  int nextOddMax;
+  for (int i = 0; i < len; i++)
+  {
+    if (nums[i] == 0)
+    {
+      // Initialize nextOddMax
+      if (i+1 < len && nums[i+1]%2 == 1)
+        nextOddMax = nums[i+1];
+      else
+        nextOddMax = 0;
+      // Find the next largest odd number to the right of the current 0  
+      for (int j = i+2; j < len; j++)
+      {
+        if (nums[j]%2 == 1)
+          nextOddMax = Math.max(nums[j], nextOddMax);
+      } // end for
+      nums[i] = nextOddMax; // Overwrite 0 with the next largest odd number 
+    } // end if
+  } // end for
+  return nums;
+}
