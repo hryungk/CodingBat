@@ -1,0 +1,31 @@
+// Given two arrays of ints sorted in increasing order, outer and inner, return true if all of 
+// the numbers in inner appear in outer. The best solution makes only a single "linear" pass of 
+// both arrays, taking advantage of the fact that both arrays are already in sorted order.
+public boolean linearIn(int[] outer, int[] inner) 
+{
+  int outLen = outer.length;
+  int inLen = inner.length;
+  boolean found = (outLen >= inLen);  // if inner array is larger, automatically false
+  if (found)
+  {
+    int io = 0; // outer array counter
+    int ii = 0; // inner array counter
+    while (found && io < outLen && ii < inLen)
+    {
+      int curInNum = inner[ii]; // currnet inner array integer to compare
+      // Loop over the outer array until greater than or equal to curInNum is found
+      while(io < outLen && outer[io] < curInNum)  
+        io++;
+      if (io < outLen && outer[io] == curInNum) // if match is found, inspect next element
+      {
+        ii++;
+        io++;
+      }
+      else  // Match for current inner element not found --> false
+        found = false;
+    } // end while
+    found = found && (ii == inLen);
+  }
+  
+  return found;
+}
