@@ -1,0 +1,11 @@
+// Modify and return the given map as follows: for this problem the map may 
+// or may not contain the "a" and "b" keys. If both keys are present, append 
+// their 2 string values together and store the result under the key "ab".
+public Map<String, String> mapAB(Map<String, String> map) 
+{
+  String aVal = map.get("a");
+  String bVal = map.get("b");
+  if (aVal != null && bVal != null)
+    map.put("ab", aVal+bVal);
+  return map;  
+}
