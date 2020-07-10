@@ -1,0 +1,15 @@
+// Modify and return the given map as follows: if exactly one of the keys "a" or "b" 
+// has a value in the map (but not both), set the other to have that same value in the map.
+public Map<String, String> mapAB3(Map<String, String> map) 
+{
+  String aVal = map.get("a");
+  String bVal = map.get("b");
+  
+  if (aVal != null && bVal == null)
+    map.put("b", aVal);
+  
+  if (aVal == null && bVal != null)
+    map.put("a", bVal);
+    
+  return map;
+}
