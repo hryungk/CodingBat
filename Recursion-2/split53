@@ -1,0 +1,33 @@
+// Given an array of ints, is it possible to divide the ints into two groups, so that 
+// the sum of the two groups is the same, with these constraints: all the values that
+// are multiple of 5 must be in one group, and all the values that are a multiple of 3
+// (and not a multiple of 5) must be in the other. (No loops needed.)
+public boolean split53(int[] nums) 
+{
+ int len = nums.length;
+  int sum = 0;
+  for (int i = 0; i < len; i++)
+    sum += nums[i];
+  
+  if (sum % 2 == 1)
+    return false;
+  else
+    return groupSum(0, nums, sum/2);
+}
+
+public boolean groupSum(int start, int[] nums, int target) 
+{  
+  int len = nums.length;
+  if (start >= len) // base case
+    return target == 0;
+  else
+  {
+    if (nums[start] % 5 == 0) // if multiple of 5, try including it.
+      return groupSum(start+1, nums, target - nums[start]);
+    else if (nums[start] % 3 == 0)  // if multiple of 3, try not including it.
+      return groupSum(start+1, nums, target);
+    else
+      return groupSum(start+1, nums, target - nums[start]) || 
+             groupSum(start+1, nums, target);      
+  }
+}
