@@ -24,7 +24,7 @@ public boolean groupSum(int start, int[] nums, int target)
   {
     if (nums[start] % 5 == 0) // if multiple of 5, try including it.
       return groupSum(start+1, nums, target - nums[start]);
-    else if (nums[start] % 3 == 0)  // if multiple of 3, try not including it.
+    else if (nums[start] % 3 == 0)  // if multiple of 3 and not 5, try not including it.
       return groupSum(start+1, nums, target);
     else
       return groupSum(start+1, nums, target - nums[start]) || 
